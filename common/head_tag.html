@@ -1,0 +1,123 @@
+<script type="text/discourse-plugin" version="0.8">
+  api.decorateWidget('header-buttons:before', function (helper) {
+    var h = helper.h
+    var navData = [
+      {
+        name: '问答',
+        dropdown: true,
+        dropdownItems: [
+          {
+            name: '安装部署',
+            href: 'https://asktug.com/c/qa/set-up-deploy',
+          },
+          {
+            name: 'TiDB 系统架构与管理',
+            href: 'https://asktug.com/c/qa/TiDB',
+          },
+          {
+            name: '性能优化',
+            href: 'https://asktug.com/c/qa/sql',
+          },
+          {
+            name: 'Real-Time HTAP',
+            href: 'https://asktug.com/c/qa/tispark-tiflash',
+          },
+          {
+            name: '私有云/公有云部署',
+            href: 'https://asktug.com/c/qa/cloud',
+          },
+          {
+            name: '应用适配与数据迁移',
+            href: 'https://asktug.com/c/qa/tools',
+          },
+        ],
+      },
+      {
+        name: 'TUG',
+        dropdown: true,
+        dropdownItems: [
+          {
+            name: '关于 TUG',
+            href: 'https://asktug.com/t/tug/306',
+          },
+          {
+            name: 'TUG 核心成员',
+            href: 'https://asktug.com/t/tug/33356',
+          },
+        ],
+      },
+      {
+        name: '技术文章',
+        href: 'https://asktug.com/c/blog',
+      },
+      {
+        name: '活动',
+        href: 'https://asktug.com/c/activities',
+      },
+      {
+        name: 'TiDB 培训',
+        href: 'https://university.pingcap.com',
+      },
+    ]
+
+    return h(
+      'nav.asktug-nav',
+      navData.map(function (d) {
+        var withDropdown = d.dropdown
+
+        if (withDropdown) {
+          return h(
+            'div.nav-item.with-dropdown',
+            [
+              h(
+                'a',
+                {
+                  href: '#',
+                },
+                d.name
+              ),
+            ].concat(
+              h(
+                'div.dropdown',
+                d.dropdownItems.map(function (i) {
+                  return h(
+                    'a.dropdown-item',
+                    {
+                      href: i.href,
+                      target: '_blank',
+                    },
+                    i.name
+                  )
+                })
+              )
+            )
+          )
+        } else {
+          return h(
+            'div.nav-item',
+            h(
+              'a',
+              {
+                href: d.href,
+                target: '_blank',
+              },
+              d.name
+            )
+          )
+        }
+      })
+    )
+  })
+</script>
+
+<script type="text/discourse-plugin" version="0.8">
+  window.checkIsLogin = function () {
+    return {
+      currentUser: Discourse.User.current(),
+      checkIsLoginConfirmMessage: settings.check_is_login_confirm_message,
+      checkIsLoginConfirmLabel: settings.check_is_login_confirm_label,
+      checkIsLoginCancelLabel: settings.check_is_login_cancel_label,
+      checkIsLoginRedirect: settings.check_is_login_redirect
+    }
+  }
+</script>

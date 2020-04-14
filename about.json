@@ -1,0 +1,26 @@
+{
+  "name": "AskTUG",
+  "component": false,
+  "license_url": null,
+  "about_url": null,
+  "authors": null,
+  "theme_version": "0.1.0",
+  "minimum_discourse_version": null,
+  "maximum_discourse_version": null,
+  "assets": {},
+  "color_schemes": {
+    "AskTUG": {
+      "primary": "30323e",
+      "secondary": "fff",
+      "tertiary": "2e2fff",
+      "quaternary": "2e2fff",
+      "header_background": "f4f4f4",
+      "header_primary": "f4f4f4",
+      "highlight": "2e2fff",
+      "danger": "fd746c",
+      "success": "2e2fff",
+      "love": "2e2fff"
+    }
+  },
+  "learn_more": "https://meta.discourse.org/t/beginners-guide-to-using-discourse-themes/91966"
+}

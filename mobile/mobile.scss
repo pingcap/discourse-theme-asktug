@@ -1,0 +1,21 @@
+.category-list {
+  .subcategories-list > td:first-child {
+    padding-top: 0;
+  }
+
+  .subcategories {
+    margin: 0;
+
+    .badge-wrapper.bullet {
+      padding-top: 1rem;
+    }
+  }
+}
+
+.category-list-item {
+  border-left: none;
+}
+
+.asktug-nav {
+  display: none;
+}

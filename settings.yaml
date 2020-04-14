@@ -1,0 +1,4 @@
+check_is_login_confirm_message: Please login first
+check_is_login_confirm_label: OK
+check_is_login_cancel_label: Cancel
+check_is_login_redirect: ''

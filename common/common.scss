@@ -1,0 +1,159 @@
+$primary: #354ede;
+$text: #30323e;
+
+input {
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+// Overwrite discourse styles
+.d-header {
+  box-shadow: none;
+}
+
+.drop-down-mode .d-header-icons .active .icon,
+.menu-panel,
+.user-menu .notifications .read {
+  background-color: #f4f4f4;
+}
+
+.menu-panel li {
+  a {
+    color: $text;
+
+    &:hover {
+      background-color: $primary;
+      color: #fff;
+
+      svg,
+      span {
+        color: #fff;
+      }
+    }
+  }
+
+  &.heading a:hover {
+    background-color: $primary;
+  }
+
+  &.category-link a:hover span {
+    color: inherit;
+  }
+}
+
+.user-menu .notifications li {
+  &:hover {
+    background: $primary;
+
+    a {
+      color: #fff;
+
+      svg,
+      span {
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+button#create-topic {
+  background: $primary;
+  color: #fff;
+
+  svg {
+    color: #fff;
+  }
+}
+
+.category-list {
+  tbody .category {
+    border-left: none;
+  }
+
+  .subcategories {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+
+    .subcategory {
+      padding-top: 1rem;
+    }
+  }
+}
+
+.extra-info-wrapper .topic-link {
+  color: $text;
+}
+
+// Overwrite discourse-search-banner styles
+.custom-search-banner {
+  h1 {
+    color: $text;
+  }
+
+  input#search-term {
+    height: 50px;
+    padding-left: 2rem;
+    border-radius: 25px;
+  }
+
+  .custom-search-banner-wrap {
+    .search-icon {
+      top: 0.625rem;
+      right: 1rem;
+    }
+
+    .search-context {
+      top: 4.5rem;
+      right: 1rem;
+    }
+  }
+
+  .search-menu .search-context + .results {
+    margin-top: 2rem;
+  }
+}
+
+// Custom styles
+.asktug-nav {
+  display: flex;
+
+  .nav-item {
+    padding: 0 1rem;
+
+    &.with-dropdown {
+      position: relative;
+
+      &:hover .dropdown {
+        display: flex;
+      }
+
+      .dropdown {
+        position: absolute;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        min-width: 150px;
+        padding: 1rem;
+        background: #f4f4f4;
+
+        .dropdown-item {
+          padding-bottom: 1rem;
+
+          &:last-child {
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+
+    a {
+      color: $text;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}

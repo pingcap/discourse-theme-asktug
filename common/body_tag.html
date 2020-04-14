@@ -1,0 +1,147 @@
+<script
+  type="text/x-handlebars"
+  data-template-name="components/create-topic-button"
+>
+  {{d-button
+    class="btn-default"
+    id="create-topic"
+    action=action
+    icon="plus"
+    label=label}}
+</script>
+
+<script>
+  function alertIfNotLogin(login) {
+    bootbox.confirm(
+      login.checkIsLoginConfirmMessage,
+      login.checkIsLoginCancelLabel,
+      login.checkIsLoginConfirmLabel,
+      function () {
+        if (login.checkIsLoginRedirect) {
+          window.location.href = eval(login.checkIsLoginRedirect)
+        }
+      }
+    )
+  }
+
+  var discoveryRoute = require('discourse/routes/discovery').default
+
+  discoveryRoute.reopen({
+    actions: {
+      createTopic() {
+        var login = window.checkIsLogin()
+        if (!login.currentUser) {
+          alertIfNotLogin(login)
+          return
+        }
+
+        const model = this.controllerFor('discovery/topics').get('model')
+        if (model.draft) {
+          this.openTopicDraft(model)
+        } else {
+          this.openComposer(this.controllerFor('discovery/topics'))
+        }
+      },
+    },
+  })
+
+  var discoveryCategoriesRoute = require('discourse/routes/discovery-categories')
+    .default
+
+  discoveryCategoriesRoute.reopen({
+    actions: {
+      createTopic() {
+        var login = window.checkIsLogin()
+        if (!login.currentUser) {
+          alertIfNotLogin(login)
+          return
+        }
+
+        const model = this.controllerFor('discovery/categories').get('model')
+        if (model.draft) {
+          this.openTopicDraft(model)
+        } else {
+          this.openComposer(this.controllerFor('discovery/categories'))
+        }
+      },
+    },
+  })
+
+  var tagsShowRoute = require('discourse/routes/tags-show').default
+
+  tagsShowRoute.reopen({
+    actions: {
+      createTopic() {
+        var login = window.checkIsLogin()
+        if (!login.currentUser) {
+          alertIfNotLogin(login)
+          return
+        }
+
+        var Composer = require('discourse/models/composer').default
+
+        const controller = this.controllerFor('tags.show')
+
+        if (controller.get('list.draft')) {
+          this.openTopicDraft(controller.get('list'))
+        } else {
+          this.controllerFor('composer')
+            .open({
+              categoryId: controller.get('category.id'),
+              action: Composer.CREATE_TOPIC,
+              draftKey: controller.get('list.draft_key'),
+              draftSequence: controller.get('list.draft_sequence'),
+            })
+            .then(() => {
+              // Pre-fill the tags input field
+              if (controller.get('model.id')) {
+                const composerModel = this.controllerFor('composer').get(
+                  'model'
+                )
+
+                composerModel.set(
+                  'tags',
+                  _.compact(
+                    _.flatten([
+                      controller.get('model.id'),
+                      controller.get('additionalTags'),
+                    ])
+                  )
+                )
+              }
+            })
+        }
+      },
+    },
+  })
+
+  var fullPageSearchController = require('discourse/controllers/full-page-search')
+    .default
+
+  fullPageSearchController.reopen({
+    actions: {
+      createTopic(searchTerm) {
+        var login = window.checkIsLogin()
+        if (!login.currentUser) {
+          alertIfNotLogin(login)
+          return
+        }
+
+        var Composer = require('discourse/models/composer').default
+
+        let topicCategory
+        if (searchTerm.indexOf('category:') !== -1) {
+          const match = searchTerm.match(/category:(\S*)/)
+          if (match && match[1]) {
+            topicCategory = match[1]
+          }
+        }
+        this.composer.open({
+          action: Composer.CREATE_TOPIC,
+          draftKey: Composer.CREATE_TOPIC,
+          topicCategory,
+        })
+      },
+    },
+  })
+</script>
