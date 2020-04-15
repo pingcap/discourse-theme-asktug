@@ -12,14 +12,14 @@
     "AskTUG": {
       "primary": "30323e",
       "secondary": "fff",
-      "tertiary": "2e2fff",
-      "quaternary": "2e2fff",
+      "tertiary": "354ede",
+      "quaternary": "354ede",
       "header_background": "f4f4f4",
       "header_primary": "f4f4f4",
-      "highlight": "2e2fff",
+      "highlight": "354ede",
       "danger": "fd746c",
-      "success": "2e2fff",
-      "love": "2e2fff"
+      "success": "354ede",
+      "love": "354ede"
     }
   },
   "learn_more": "https://meta.discourse.org/t/beginners-guide-to-using-discourse-themes/91966"
