@@ -1,64 +1,56 @@
 <script type="text/discourse-plugin" version="0.8">
   api.decorateWidget('header-buttons:before', function (helper) {
+    if (!settings.custom_header_items) {
+      return
+    }
+
+    if (!settings.header_items || !settings.subheader_items) {
+      return
+    }
+
+    var headerItems = settings.header_items.split('|').map(function (item) {
+      var itemList = item.split(';')
+      var href =
+        itemList.length === 1 || itemList[1] === '' ? null : itemList[1]
+
+      if (href) {
+        return {
+          name: itemList[0],
+          href: href,
+        }
+      } else {
+        return {
+          name: itemList[0],
+        }
+      }
+    })
+
+    var subheaderItems = settings.subheader_items
+      .split('|')
+      .map(function (items) {
+        var itemsList = items.startsWith('#')
+          ? []
+          : items.split(',').map(function (item) {
+              var itemList = item.split(';')
+
+              return {
+                name: itemList[0],
+                href: itemList[1],
+              }
+            })
+
+        return itemsList
+      })
+      .forEach(function (items, i) {
+        if (items.length !== 0) {
+          headerItems[i].dropdown = true
+          headerItems[i].dropdownItems = items
+        }
+      })
+
+    var navData = headerItems
+
     var h = helper.h
-    var navData = [
-      {
-        name: '问答',
-        dropdown: true,
-        dropdownItems: [
-          {
-            name: '安装部署',
-            href: 'https://asktug.com/c/qa/set-up-deploy',
-          },
-          {
-            name: 'TiDB 系统架构与管理',
-            href: 'https://asktug.com/c/qa/TiDB',
-          },
-          {
-            name: '性能优化',
-            href: 'https://asktug.com/c/qa/sql',
-          },
-          {
-            name: 'Real-Time HTAP',
-            href: 'https://asktug.com/c/qa/tispark-tiflash',
-          },
-          {
-            name: '私有云/公有云部署',
-            href: 'https://asktug.com/c/qa/cloud',
-          },
-          {
-            name: '应用适配与数据迁移',
-            href: 'https://asktug.com/c/qa/tools',
-          },
-        ],
-      },
-      {
-        name: 'TUG',
-        dropdown: true,
-        dropdownItems: [
-          {
-            name: '关于 TUG',
-            href: 'https://asktug.com/t/tug/306',
-          },
-          {
-            name: 'TUG 核心成员',
-            href: 'https://asktug.com/t/tug/33356',
-          },
-        ],
-      },
-      {
-        name: '技术文章',
-        href: 'https://asktug.com/c/blog',
-      },
-      {
-        name: '活动',
-        href: 'https://asktug.com/c/activities',
-      },
-      {
-        name: 'TiDB 培训',
-        href: 'https://university.pingcap.com',
-      },
-    ]
 
     return h(
       'nav.asktug-nav',

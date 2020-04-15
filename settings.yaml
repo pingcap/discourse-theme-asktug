@@ -2,3 +2,11 @@ check_is_login_confirm_message: Please login first
 check_is_login_confirm_label: OK
 check_is_login_cancel_label: Cancel
 check_is_login_redirect: ''
+
+custom_header_items: true
+header_items:
+  type: list
+  default: 问答|TUG|技术文章;https://asktug.com/c/blog|活动;https://asktug.com/c/activities|TiDB 培训;https://university.pingcap.com
+subheader_items:
+  type: list
+  default: 安装部署;https://asktug.com/c/qa/set-up-deploy,TiDB 系统架构与原理;https://asktug.com/c/qa/TiDB,性能优化;https://asktug.com/c/qa/sql,Real-Time HTAP;https://asktug.com/c/qa/tispark-tiflash,私有云/公有云部署;https://asktug.com/c/qa/cloud,应用适配与数据迁移;https://asktug.com/c/qa/tools|关于 TUG;https://asktug.com/t/tug/306,TUG 核心成员;https://asktug.com/t/tug/33356|#1|#2|#3
