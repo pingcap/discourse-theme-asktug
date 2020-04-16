@@ -109,7 +109,27 @@
       checkIsLoginConfirmMessage: settings.check_is_login_confirm_message,
       checkIsLoginConfirmLabel: settings.check_is_login_confirm_label,
       checkIsLoginCancelLabel: settings.check_is_login_cancel_label,
-      checkIsLoginRedirect: settings.check_is_login_redirect
+      checkIsLoginRedirect: settings.check_is_login_redirect,
     }
   }
+</script>
+
+<script>
+  Discourse._registerPluginCode('0.8', function (api) {
+    api.onPageChange(function () {
+      setTimeout(function () {
+        var allBadgeNotifications = $('.category-list')
+          .find('.badge-notification')
+          .toArray()
+
+        if (allBadgeNotifications.length > 0) {
+          allBadgeNotifications.forEach(function (b) {
+            if (b.title.includes('未读')) {
+              b.remove()
+            }
+          })
+        }
+      }, 100)
+    })
+  })
 </script>
