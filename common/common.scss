@@ -18,6 +18,10 @@ input {
   background-color: #f4f4f4;
 }
 
+.menu-panel {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
 .menu-panel li {
   a {
     color: $text;
@@ -80,10 +84,6 @@ button#create-topic {
       padding-top: 1rem;
     }
   }
-}
-
-.extra-info-wrapper .topic-link {
-  color: $text;
 }
 
 // Overwrite discourse-search-banner styles
