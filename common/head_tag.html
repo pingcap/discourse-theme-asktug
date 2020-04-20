@@ -102,18 +102,6 @@
   })
 </script>
 
-<script type="text/discourse-plugin" version="0.8">
-  window.checkIsLogin = function () {
-    return {
-      currentUser: Discourse.User.current(),
-      checkIsLoginConfirmMessage: settings.check_is_login_confirm_message,
-      checkIsLoginConfirmLabel: settings.check_is_login_confirm_label,
-      checkIsLoginCancelLabel: settings.check_is_login_cancel_label,
-      checkIsLoginRedirect: settings.check_is_login_redirect,
-    }
-  }
-</script>
-
 <script>
   Discourse._registerPluginCode('0.8', function (api) {
     api.onPageChange(function () {
@@ -132,4 +120,16 @@
       }, 100)
     })
   })
+</script>
+
+<script type="text/discourse-plugin" version="0.8">
+  window.checkIsLogin = function () {
+    return {
+      currentUser: Discourse.User.current(),
+      checkIsLoginConfirmMessage: settings.check_is_login_confirm_message,
+      checkIsLoginConfirmLabel: settings.check_is_login_confirm_label,
+      checkIsLoginCancelLabel: settings.check_is_login_cancel_label,
+      checkIsLoginRedirect: settings.check_is_login_redirect,
+    }
+  }
 </script>

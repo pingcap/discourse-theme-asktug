@@ -1,5 +1,6 @@
 $primary: #354ede;
 $text: #30323e;
+$shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
 input {
   &:focus {
@@ -19,7 +20,7 @@ input {
 }
 
 .menu-panel {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: $shadow;
 }
 
 .menu-panel li {
@@ -120,13 +121,21 @@ button#create-topic {
   display: flex;
 
   .nav-item {
-    padding: 0 1rem;
+    padding: calc(0.5rem + 1px) 1rem;
 
     &.with-dropdown {
       position: relative;
 
-      &:hover .dropdown {
-        display: flex;
+      &:hover {
+        background: #f4f4f4;
+
+        > a {
+          color: $primary;
+        }
+
+        .dropdown {
+          display: flex;
+        }
       }
 
       .dropdown {
@@ -135,8 +144,10 @@ button#create-topic {
         display: none;
         flex-direction: column;
         min-width: 150px;
+        margin-top: calc(0.5rem + 1px);
         padding: 1rem;
         background: #f4f4f4;
+        box-shadow: $shadow;
 
         .dropdown-item {
           padding-bottom: 1rem;
