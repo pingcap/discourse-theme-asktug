@@ -133,36 +133,67 @@
       var container = api.container
       var topicController = container.lookup('controller:topic')
       var userModel = require('discourse/models/user').default
+      var iconLibrary = require('discourse-common/lib/icon-library')
 
       setTimeout(function () {
         var posts = topicController.get('model.postStream.posts')
         if (!posts) {
           return
         }
-        var users = posts.map(function (post) {
-          return userModel.findByUsername(post.username)
+
+        posts = posts.filter((p) => !p.action_code)
+        var names = posts.map(function (post) {
+          return post.username
         })
+        var users = posts
+          .map(function (post) {
+            return userModel.findByUsername(post.username)
+          })
+          .map((promise) => promise.catch(Error))
+        var cache = {}
 
         Promise.all(users).then(function (results) {
-          var usersBadges = results.map(function (user) {
-            return user.featured_user_badges
+          var usersBadges = results.map(function (user, i) {
+            if (user instanceof Error) {
+              return cache[names[i]]
+            }
+
+            var badges = user.featured_user_badges
+            cache[names[i]] = badges
+
+            return badges
           })
           var topicMetas = $('.topic-post .topic-meta-data')
 
           topicMetas.map(function (i) {
+            if (!usersBadges[i]) {
+              return
+            }
+
             var badgesAfterMeta = $('<div class="badges-after-meta"></div>')
 
             usersBadges[i].forEach(function (b) {
               var badge = b.badge
-              $(
-                `<a href="/badges/${badge.id}/-?username=${b.user.username}"><span class="user-badge"><img src=${b.badge.image} alt=${b.badge.name} /><span class="badge-display-name">${b.badge.name}</span></span></a>`
-              ).appendTo(badgesAfterMeta)
+
+              if (badge.image) {
+                $(
+                  `<a href="/badges/${badge.id}/-?username=${b.user.username}"><span class="user-badge"><img src=${badge.image} alt=${badge.name} /><span class="badge-display-name">${badge.name}</span></span></a>`
+                ).appendTo(badgesAfterMeta)
+              } else {
+                var badgeType = badge.badge_type.name.toLowerCase()
+                var iconName = badge.icon.split('-').slice(1).join('-')
+                var icon = iconLibrary.iconHTML(iconName)
+
+                $(
+                  `<a href="/badges/${badge.id}/-?username=${b.user.username}"><span class="user-badge badge-type-${badgeType}">${icon}<span class="badge-display-name">${badge.name}</span></span></a>`
+                ).appendTo(badgesAfterMeta)
+              }
             })
 
             badgesAfterMeta.insertAfter(this)
           })
         })
-      }, 100)
+      }, 500)
     })
   })
 </script>
