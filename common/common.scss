@@ -2,13 +2,13 @@ $primary: #354ede;
 $text: #30323e;
 $shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
+// Overwrite discourse styles
 input {
   &:focus {
     box-shadow: none !important;
   }
 }
 
-// Overwrite discourse styles
 .d-header {
   box-shadow: none;
 }
@@ -165,6 +165,18 @@ button#create-topic {
       &:hover {
         color: $primary;
       }
+    }
+  }
+}
+
+.badges-after-meta {
+  margin-left: 0.75rem;
+
+  a {
+    margin-right: 0.5em;
+
+    &:last-child {
+      margin-right: 0;
     }
   }
 }

@@ -122,6 +122,51 @@
   })
 </script>
 
+<script>
+  Discourse._registerPluginCode('0.8', function (api) {
+    api.onPageChange(function (url) {
+      var topicMatch = url.match(/\/t\/[A-Za-z]+\/(\d+)/)
+      if (!topicMatch) {
+        return
+      }
+
+      var container = api.container
+      var topicController = container.lookup('controller:topic')
+      var userModel = require('discourse/models/user').default
+
+      setTimeout(function () {
+        var posts = topicController.get('model.postStream.posts')
+        if (!posts) {
+          return
+        }
+        var users = posts.map(function (post) {
+          return userModel.findByUsername(post.username)
+        })
+
+        Promise.all(users).then(function (results) {
+          var usersBadges = results.map(function (user) {
+            return user.featured_user_badges
+          })
+          var topicMetas = $('.topic-post .topic-meta-data')
+
+          topicMetas.map(function (i) {
+            var badgesAfterMeta = $('<div class="badges-after-meta"></div>')
+
+            usersBadges[i].forEach(function (b) {
+              var badge = b.badge
+              $(
+                `<a href="/badges/${badge.id}/-?username=${b.user.username}"><span class="user-badge"><img src=${b.badge.image} alt=${b.badge.name} /><span class="badge-display-name">${b.badge.name}</span></span></a>`
+              ).appendTo(badgesAfterMeta)
+            })
+
+            badgesAfterMeta.insertAfter(this)
+          })
+        })
+      }, 100)
+    })
+  })
+</script>
+
 <script type="text/discourse-plugin" version="0.8">
   window.checkIsLogin = function () {
     return {
