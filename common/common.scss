@@ -170,7 +170,8 @@ button#create-topic {
 }
 
 .badges-after-meta {
-  margin-left: 0.75rem;
+  position: absolute;
+  top: 2.5rem;
 
   a {
     margin-right: 0.5em;
