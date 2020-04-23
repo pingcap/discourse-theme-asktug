@@ -168,6 +168,16 @@
 </script>
 
 <script type="text/discourse-plugin" version="0.8">
+  if (settings.remove_home_page_search_button) {
+    setTimeout(function () {
+      if (window.location.pathname === '/') {
+        $('#search-button').remove()
+      }
+    }, 100)
+  }
+</script>
+
+<script type="text/discourse-plugin" version="0.8">
   window.checkIsLogin = function () {
     return {
       currentUser: Discourse.User.current(),

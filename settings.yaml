@@ -10,3 +10,5 @@ header_items:
 subheader_items:
   type: list
   default: 安装部署;https://asktug.com/c/qa/set-up-deploy,TiDB 系统架构与原理;https://asktug.com/c/qa/TiDB,性能优化;https://asktug.com/c/qa/sql,Real-Time HTAP;https://asktug.com/c/qa/tispark-tiflash,私有云/公有云部署;https://asktug.com/c/qa/cloud,应用适配与数据迁移;https://asktug.com/c/qa/tools,容灾/跨数据中心;https://asktug.com/c/qa/cross-data-center,软硬件平台适配;https://asktug.com/c/qa/adaptation|关于 TUG;https://asktug.com/t/tug/306,TUG 核心成员;https://asktug.com/t/tug/33356|#1|#2|#3
+
+remove_home_page_search_button: false
