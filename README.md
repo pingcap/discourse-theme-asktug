@@ -24,9 +24,13 @@ This feature allows you to define both of the first level menu and second level 
 
 - Use `#...` as a placeholder when a first level menu item is between two second level menu items. Start by `#`, end with any characters.
 
-### Show create topic button when not login
+You can view the example in `settings.yaml`.
+
+### Show Create Topic Button when not logged in
 
 As the title.
+
+This feature still has a configuration item named `check_is_login_*`. When you click the Create Topic Button but are not logged in, It will open a modal box to prompt you to log in.
 
 ## How to contribute
 
