@@ -173,11 +173,9 @@ button#create-topic {
   position: absolute;
   top: 2.75rem;
 
-  a {
-    margin-right: 0.5em;
-
-    &:last-child {
-      margin-right: 0;
-    }
+  .user-badge {
+    padding-left: 0;
+    padding-right: 1em;
+    border: none;
   }
 }
