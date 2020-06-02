@@ -122,8 +122,8 @@
   })
 </script>
 
-<script>
-  Discourse._registerPluginCode('0.8', function (api) {
+<script type="text/discourse-plugin" version="0.8">
+  if (!settings.close_custom_badges_effect) {
     api.onPageChange(function (url) {
       var topicMatch = url.match(/\/t\/[A-Za-z]+\/(\d+)/)
       if (!topicMatch) {
@@ -196,7 +196,7 @@
         })
       }, 500)
     })
-  })
+  }
 </script>
 
 <script type="text/discourse-plugin" version="0.8">
