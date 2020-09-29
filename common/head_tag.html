@@ -48,13 +48,34 @@
         }
       })
 
+    var thirdLevelItems = {}
+    if (settings.third_level_items) {
+      thirdLevelItems = settings.third_level_items
+        .split('|')
+        .reduce(function (acc, items) {
+          var itemsList = items.split(',')
+          var index = itemsList[0]
+
+          acc[index] = itemsList.slice(1).map(function (item) {
+            var itemList = item.split(';')
+
+            return {
+              name: itemList[0],
+              href: itemList[1],
+            }
+          })
+
+          return acc
+        }, {})
+    }
+
     var navData = headerItems
 
     var h = helper.h
 
     return h(
       'nav.asktug-nav',
-      navData.map(function (d) {
+      navData.map(function (d, index) {
         var withDropdown = d.dropdown
 
         if (withDropdown) {
@@ -64,14 +85,44 @@
               h(
                 'a',
                 {
-                  href: '#',
+                  href: d.href,
                 },
                 d.name
               ),
             ].concat(
               h(
                 'div.dropdown',
-                d.dropdownItems.map(function (i) {
+                d.dropdownItems.map(function (i, index1) {
+                  var thirdLevelIndex = index + 1 + '-' + (index1 + 1)
+                  if (thirdLevelItems[thirdLevelIndex]) {
+                    return h(
+                      'a.dropdown-item.dropdown-item-dropdown',
+                      [
+                        h(
+                          'a',
+                          {
+                            href: '#',
+                          },
+                          i.name
+                        ),
+                      ].concat(
+                        h(
+                          'div.dropdown-dropdown',
+                          thirdLevelItems[thirdLevelIndex].map(function (i) {
+                            return h(
+                              'a.dropdown-item',
+                              {
+                                href: i.href,
+                                target: '_blank',
+                              },
+                              i.name
+                            )
+                          })
+                        )
+                      )
+                    )
+                  }
+
                   return h(
                     'a.dropdown-item',
                     {

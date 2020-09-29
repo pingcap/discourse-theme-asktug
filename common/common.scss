@@ -137,25 +137,53 @@ button#create-topic {
           display: flex;
         }
       }
+    }
 
-      .dropdown {
+    .dropdown-item-dropdown {
+      position: relative;
+
+      &:after {
+        content: '▸';
         position: absolute;
-        left: 0;
-        display: none;
-        flex-direction: column;
-        min-width: 150px;
-        margin-top: calc(0.5rem + 1px);
-        padding: 1rem;
-        background: #f4f4f4;
-        box-shadow: $shadow;
+        bottom: 0;
+        right: 1rem;
+      }
 
-        .dropdown-item {
-          padding-bottom: 1rem;
-
-          &:last-child {
-            padding-bottom: 0;
-          }
+      &:hover {
+        .dropdown-dropdown {
+          display: flex;
         }
+      }
+    }
+
+    .dropdown,
+    .dropdown-dropdown {
+      position: absolute;
+      left: 0;
+      display: none;
+      flex-direction: column;
+      width: 150px;
+      max-width: 150px;
+      margin-top: calc(0.5rem + 1px);
+      background: #f4f4f4;
+      box-shadow: $shadow;
+
+      .dropdown-item {
+        padding: 1rem;
+        padding-bottom: 0;
+
+        &:last-child {
+          padding-bottom: 1rem;
+        }
+      }
+    }
+
+    .dropdown-dropdown {
+      top: calc(-0.5rem - 1px);
+      left: 150px;
+
+      &:hover {
+        display: flex;
       }
     }
 
