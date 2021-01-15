@@ -2,12 +2,12 @@ $primary: #162d71;
 $text: #30323e;
 $shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
-// // Overwrite discourse styles
-// input {
-//   &:focus {
-//     box-shadow: none !important;
-//   }
-// }
+// Overwrite discourse styles
+input {
+  &:focus {
+    box-shadow: none !important;
+  }
+}
 
 .d-header {
   box-shadow: 0 0 5px lightgrey;
