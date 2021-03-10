@@ -1,6 +1,9 @@
+*.tar.gz
 .DS_Store
+.editorconfig
 .git
 .gitignore
-build/
+.nvmrc
 node_modules/
-*.tar.gz
+package-lock.json
+package.json

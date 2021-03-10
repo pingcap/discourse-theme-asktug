@@ -16,10 +16,10 @@ This is the best guide I have ever seen.
 npm run tar
 ```
 
-2. Upload the generated bundle from the admin settings
+2. Upload the generated bundle at the admin settings:
 
-- Test Evn: https://idc.asktug.com/admin/customize/themes
-- Prod Env: https://asktug.com/admin/customize/themes
+- TEST Environment: https://idc.asktug.com/admin/customize/themes
+- PROD Environment: https://asktug.com/admin/customize/themes
 
 ## Theme features
 
