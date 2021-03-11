@@ -1,0 +1,23 @@
+{
+  "name": "discourse-theme-asktug",
+  "private": true,
+  "scripts": {
+    "tar": "tar --exclude-from=.tarignore -czf discourse-theme-asktug.tar.gz ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^5.1.3",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1"
+  }
+}

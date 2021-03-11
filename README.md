@@ -10,11 +10,16 @@ This is the best guide I have ever seen.
 
 ## How to preview the changes
 
-Bundle the dir and then load in the settings.
+1. Generate the bundle file
 
 ```sh
-tar -czf discourse-theme-asktug.tar.gz discourse-theme-asktug
+npm run tar
 ```
+
+2. Upload the generated bundle at the admin settings:
+
+- TEST Environment: https://idc.asktug.com/admin/customize/themes
+- PROD Environment: https://asktug.com/admin/customize/themes
 
 ## Theme features
 
