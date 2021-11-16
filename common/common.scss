@@ -1,7 +1,8 @@
 @import 'badgesPage';
 
-$primary: #BE1D32;
-$text: #2c2c2c;
+$primary:#BE1D32;
+$text: #2C2C2C;
+$tertiary-low:#e9eaee;
 $shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
 // Overwrite discourse styles
@@ -18,12 +19,19 @@ input {
 .drop-down-mode .d-header-icons .active .icon,
 .menu-panel,
 .user-menu .notifications .read {
-  background-color: #f4f4f4;
+  background-color: #f7f8f9;
 }
+
+.user-menu .notifications li {
+  background-color: $tertiary-low;
+}
+
 
 .menu-panel {
   box-shadow: $shadow;
+  background-color: #f7f8f9;
 }
+
 
 .menu-panel li {
   a {
@@ -34,9 +42,11 @@ input {
       svg,
       span {
         color: #fff;
+        // background-color: #f7f8f9;
       }
     }
   }
+
   &.heading a:hover {
     background-color: $primary;
   }
@@ -123,7 +133,7 @@ input {
       width: 150px;
       max-width: 150px;
       margin-top: calc(0.5rem + 1px);
-      background: #f4f4f4;
+      background: #f7f8f9;
       box-shadow: $shadow;
       .dropdown-item {
         padding: 1rem;
