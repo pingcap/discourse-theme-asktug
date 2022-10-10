@@ -153,25 +153,25 @@
   })
 </script>
 
-<script>
-  Discourse._registerPluginCode('0.8', function (api) {
-    api.onPageChange(function () {
-      setTimeout(function () {
-        var allBadgeNotifications = $('.category-list')
-          .find('.badge-notification')
-          .toArray()
+<!--<script>-->
+<!--  Discourse._registerPluginCode('0.8', function (api) {-->
+<!--    api.onPageChange(function () {-->
+<!--      setTimeout(function () {-->
+<!--        var allBadgeNotifications = $('.category-list')-->
+<!--          .find('.badge-notification')-->
+<!--          .toArray()-->
 
-        if (allBadgeNotifications.length > 0) {
-          allBadgeNotifications.forEach(function (b) {
-            if (b.title.includes('未读')) {
-              b.remove()
-            }
-          })
-        }
-      }, 100)
-    })
-  })
-</script>
+<!--        if (allBadgeNotifications.length > 0) {-->
+<!--          allBadgeNotifications.forEach(function (b) {-->
+<!--            if (b.title.includes('未读')) {-->
+<!--              b.remove()-->
+<!--            }-->
+<!--          })-->
+<!--        }-->
+<!--      }, 100)-->
+<!--    })-->
+<!--  })-->
+<!--</script>-->
 
 <script type="text/discourse-plugin" version="0.8">
   if (!settings.close_custom_badges_effect) {
@@ -270,4 +270,51 @@
       checkIsLoginRedirect: settings.check_is_login_redirect,
     }
   }
+</script>
+
+<script type="text/discourse-plugin" version="1.3.0">
+var BASE = 'https://tidb-community-site.oss-cn-beijing.aliyuncs.com/tidb-community-ui'
+var TS = 20220927
+var link = document.createElement('link')
+link.rel = 'stylesheet'
+link.href = BASE + '/ti-site-asktug.' + settings.deployment_env + '.css?v=' + TS
+document.head.appendChild(link)
+
+var script = document.createElement('script')
+script.src = BASE + '/ti-site-asktug.' + settings.deployment_env + '.js?v=' + TS
+script.defer = true
+document.body.appendChild(script)
+</script>
+
+<script type="text/discourse-plugin" version="1.3.0">
+var discourseComputed = require("discourse-common/utils/decorators").default;
+
+// hide default header
+Discourse.lookup('controller:application').reopen({
+  @discourseComputed()
+  showSiteHeader() {
+    return false;
+  },
+})
+
+function search () {
+  var term = document.querySelector(`#search-term`).value
+  window.open('https://search.asktug.com/?q=' + encodeURIComponent(term), '_blank');
+}
+
+// redirect searches
+var originalTriggerSearch = api.container.factoryManagerCache['widget:search-menu']['class'].prototype.triggerSearch
+api.reopenWidget('search-menu', {
+  fullSearch (opts) {
+    search ();
+  },
+  triggerSearch () {
+    if (event.which === 13) {
+      search ()
+    } else {
+      originalTriggerSearch.call(this)
+    }
+  }
+})
+
 </script>

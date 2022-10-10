@@ -10,16 +10,7 @@ This is the best guide I have ever seen.
 
 ## How to preview the changes
 
-1. Generate the bundle file
-
-```sh
-npm run tar
-```
-
-2. Upload the generated bundle at the admin settings:
-
-- TEST Environment: https://idc.asktug.com/admin/customize/themes
-- PROD Environment: https://asktug.com/admin/customize/themes
+See https://meta.discourse.org/t/install-the-discourse-theme-cli-console-app-to-help-you-build-themes/82950
 
 ## Theme features
 
