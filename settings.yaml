@@ -6,10 +6,10 @@ check_is_login_redirect: ''
 custom_header_items: true
 header_items:
   type: list
-  default: 问答|TUG|文章;https://asktug.com/c/blog|活动;https://asktug.com/c/activities|TiDB 大学;https://university.pingcap.com
+  default: ''
 subheader_items:
   type: list
-  default: 安装部署;https://asktug.com/c/qa/set-up-deploy,TiDB 系统架构与原理;https://asktug.com/c/qa/TiDB,性能优化;https://asktug.com/c/qa/sql,Real-Time HTAP;https://asktug.com/c/qa/tispark-tiflash,私有云/公有云部署;https://asktug.com/c/qa/cloud,应用适配与数据迁移;https://asktug.com/c/qa/tools,容灾/跨数据中心;https://asktug.com/c/qa/cross-data-center,软硬件平台适配;https://asktug.com/c/qa/adaptation,需求反馈;https://asktug.com/c/qa/requirements|关于 TUG;https://asktug.com/t/tug/306,TUG 核心成员;https://asktug.com/t/tug/33356, 加入 TUG;http://pingcaptidb.mikecrm.com/gHY23LJ|精选实践汇总;https://asktug.com/t/topic/34701,[TiDB 运维手册] SOP 系列;https://asktug.com/t/topic/33145,TiUP 常见 FAQ;https://asktug.com/t/topic/35314,Tools 常见 FAQ;https://asktug.com/t/topic/35622,常见报错 LOG FAQ;https://asktug.com/t/topic/37487|TiDB 4.0 捉“虫”竞赛;https://asktug.com/c/activities/bug-hunting, 直播;https://asktug.com/c/activities/live, TUG 企业行;https://asktug.com/c/activities/go-to-users
+  default: ''
 third_level_items:
   type: list
   # default: 1-1,Baidu;https://baidu.com
@@ -18,3 +18,10 @@ third_level_items:
 remove_home_page_search_button: false
 
 close_custom_badges_effect: false
+
+deployment_env:
+  default: production
+  type: enum
+  choices:
+    - production
+    - development
