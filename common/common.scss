@@ -185,3 +185,10 @@ input {
 .alert-emails-disabled {
   display: none;
 }
+
+// remove left sidebar on new asktug homepage
+#main-outlet-wrapper {
+  grid-template-columns: none !important; // var(--d-sidebar-width) minmax(0, 1fr);
+  gap: 0 !important; // 0 2em;
+  padding-left: unset !important;
+}
