@@ -274,7 +274,7 @@
 
 <script type="text/discourse-plugin" version="1.3.0">
 var BASE = 'https://tidb-community-site.oss-cn-beijing.aliyuncs.com/tidb-community-ui'
-var TS = settings.community_ui_ts ? '?v=' + TS : ''
+var TS = settings.community_ui_ts ? '?v=' + settings.community_ui_ts : ''
 var link = document.createElement('link')
 link.rel = 'stylesheet'
 link.href = BASE + '/ti-site-asktug.' + settings.deployment_env + '.css' + TS
