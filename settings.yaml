@@ -25,3 +25,7 @@ deployment_env:
   choices:
     - production
     - development
+
+community_ui_ts:
+  default: ''
+  type: text
