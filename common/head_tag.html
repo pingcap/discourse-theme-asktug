@@ -287,14 +287,6 @@ document.body.appendChild(script)
 </script>
 
 <script type="text/discourse-plugin" version="1.3.0">
-var discourseComputed = require("discourse-common/utils/decorators").default;
 
-// hide default header
-Discourse.lookup('controller:application').reopen({
-  @discourseComputed()
-  showSiteHeader() {
-    return false;
-  },
-})
 
 </script>
