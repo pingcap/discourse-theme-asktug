@@ -1,10 +1,10 @@
 {
-  "name": "AskTUG 3.3 Beta",
+  "name": "AskTUG 3.3",
   "component": false,
   "license_url": null,
   "about_url": "https://github.com/pingcap-incubator/discourse-theme-asktug",
   "authors": "g1eny0ung, 634750802",
-  "theme_version": "3.3.0",
+  "theme_version": "3.3.0.beta1",
   "minimum_discourse_version": "3.2.0",
   "assets": {},
   "color_schemes": {
