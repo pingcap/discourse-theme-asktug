@@ -24,7 +24,7 @@ function replaceSearchFunction() {
     },
     triggerSearch: {
       get () {
-        return function () {
+        return () => {
           if (event.which === 13) {
             search()
           } else {
