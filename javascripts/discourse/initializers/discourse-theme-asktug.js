@@ -4,18 +4,18 @@ import computed from 'discourse-common/utils/decorators';
 export default {
   name: 'discourse-theme-asktug',
   initialize() {
-    runAll(
-      hideSiteHeader,
-      replaceSearchFunction,
-    )
+    runAll([
+      { name: 'hideSiteHeader', initializer: hideSiteHeader },
+      { name: 'replaceSearchFunction', initializer: replaceSearchFunction },
+    ])
   }
 };
 
-function runAll(...funcs) {
+function runAll(funcs) {
   funcs.forEach(func => {
     console.debug(`[discourse-theme-asktug] execute initializer ${func.name}`);
     try {
-      func()
+      func.initializer()
     } catch (e) {
       console.error(`[discourse-theme-asktug] failed to execute initializer ${func.name}`, e)
     }
