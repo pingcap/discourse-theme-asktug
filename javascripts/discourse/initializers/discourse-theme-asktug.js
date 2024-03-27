@@ -16,12 +16,22 @@ function replaceSearchFunction() {
   // redirect searches
   var originalTriggerSearch = SearchMenu.prototype.triggerSearch;
 
-  SearchMenu.prototype.fullSearch = search;
-  SearchMenu.prototype.triggerSearch = function () {
-    if (event.which === 13) {
-      search()
-    } else {
-      originalTriggerSearch.call(this)
+  Object.defineProperties(SearchMenu.prototype, {
+    fullSearch: {
+      get () {
+        return search;
+      }
+    },
+    triggerSearch: {
+      get () {
+        return function () {
+          if (event.which === 13) {
+            search()
+          } else {
+            originalTriggerSearch.call(this)
+          }
+        }
+      }
     }
-  }
+  })
 }
