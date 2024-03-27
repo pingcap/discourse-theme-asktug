@@ -14,7 +14,7 @@ function replaceSearchFunction() {
   }
 
   // redirect searches
-  var originalTriggerSearchGet = Object.getOwnPropertyDescriptor(SearchMenu.prototype, triggerSearch).get;
+  var originalTriggerSearchGet = Object.getOwnPropertyDescriptor(SearchMenu.prototype, 'triggerSearch').get;
 
   Object.defineProperties(SearchMenu.prototype, {
     fullSearch: {
