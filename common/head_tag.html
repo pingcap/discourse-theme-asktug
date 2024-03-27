@@ -1,3 +1,4 @@
+<!-- Update 2024-03-27 This should be deprecated by community header. -->
 <script type="text/discourse-plugin" version="0.8">
   api.decorateWidget('header-buttons:before', function (helper) {
     if (!settings.custom_header_items) {
@@ -270,52 +271,4 @@
       checkIsLoginRedirect: settings.check_is_login_redirect,
     }
   }
-</script>
-
-<script type="text/discourse-plugin" version="1.3.0">
-var BASE = 'https://tidb-community-site.oss-cn-beijing.aliyuncs.com/tidb-community-ui'
-var TS = settings.community_ui_ts ? '?v=' + settings.community_ui_ts : ''
-var link = document.createElement('link')
-link.rel = 'stylesheet'
-link.href = BASE + '/ti-site-asktug.' + settings.deployment_env + '.css' + TS
-document.head.appendChild(link)
-
-var script = document.createElement('script')
-script.src = BASE + '/ti-site-asktug.' + settings.deployment_env + '.js' + TS
-script.defer = true
-document.body.appendChild(script)
-</script>
-
-<script type="text/discourse-plugin" version="1.3.0">
-var discourseComputed = require("discourse-common/utils/decorators").default;
-
-// hide default header
-Discourse.lookup('controller:application').reopen({
-  @discourseComputed()
-  showSiteHeader() {
-    return false;
-  },
-})
-
-function search () {
-  var term = document.querySelector(`#search-term`).value
-  window.open('https://search.asktug.com/?q=' + encodeURIComponent(term), '_blank');
-}
-function todo() {
-// redirect searches
-var originalTriggerSearch = api.container.factoryManagerCache['component:search-menu']['class'].prototype.triggerSearch
-api.reopenWidget('search-menu', {
-  fullSearch (opts) {
-    search ();
-  },
-  triggerSearch () {
-    if (event.which === 13) {
-      search ()
-    } else {
-      originalTriggerSearch.call(this)
-    }
-  }
-})
-}
-
 </script>
