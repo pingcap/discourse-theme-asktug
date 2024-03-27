@@ -70,6 +70,10 @@ input {
 }
 
 // Overwrite discourse-search-banner styles
+.search-banner {
+  background-size: contain;
+  background-position: center center;
+}
 .custom-search-banner {
   h1 {
     color: $text;
