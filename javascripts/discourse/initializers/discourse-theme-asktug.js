@@ -24,8 +24,6 @@ function runAll(funcs) {
 }
 
 function commonHeaderFooter() {
-  const settings = Discourse.lookup('site-settings:main')
-
   var BASE = 'https://tidb-community-site.oss-cn-beijing.aliyuncs.com/tidb-community-ui'
   var TS = settings.community_ui_ts ? '?v=' + settings.community_ui_ts : ''
   var link = document.createElement('link')
