@@ -296,26 +296,4 @@ Discourse.lookup('controller:application').reopen({
     return false;
   },
 })
-
-function search () {
-  var term = document.querySelector(`#search-term`).value
-  window.open('https://search.asktug.com/?q=' + encodeURIComponent(term), '_blank');
-}
-function todo() {
-// redirect searches
-var originalTriggerSearch = api.container.factoryManagerCache['component:search-menu']['class'].prototype.triggerSearch
-api.reopenWidget('search-menu', {
-  fullSearch (opts) {
-    search ();
-  },
-  triggerSearch () {
-    if (event.which === 13) {
-      search ()
-    } else {
-      originalTriggerSearch.call(this)
-    }
-  }
-})
-}
-
 </script>
