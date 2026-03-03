@@ -51,7 +51,7 @@ function replaceSearchFunction() {
 
   function search() {
     var term = document.querySelector(`#search-term`).value
-    window.open('https://search.asktug.com/?q=' + encodeURIComponent(term), '_blank');
+    window.open('https://search.pingkai.cn/?q=' + encodeURIComponent(term), '_blank');
   }
 
   // redirect searches
